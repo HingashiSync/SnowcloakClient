@@ -60,7 +60,7 @@ public class CompactUi : WindowMediatorSubscriberBase
     public CompactUi(ILogger<CompactUi> logger, UiSharedService uiShared, MareConfigService configService, ApiController apiController, PairManager pairManager, ChatService chatService,
         ServerConfigurationManager serverManager, MareMediator mediator, FileUploadManager fileTransferManager, UidDisplayHandler uidDisplayHandler, CharaDataManager charaDataManager,
         PerformanceCollectorService performanceCollectorService)
-        : base(logger, mediator, "###SnowcloakSyncMainUI", performanceCollectorService)
+        : base(logger, mediator, "###HingashiSyncMainUI", performanceCollectorService)
     {
         _uiSharedService = uiShared;
         _configService = configService;
@@ -80,11 +80,11 @@ public class CompactUi : WindowMediatorSubscriberBase
 #if DEBUG
         string dev = "Dev Build";
         var ver = Assembly.GetExecutingAssembly().GetName().Version!;
-        WindowName = $"Snowcloak Sync {dev} ({ver.Major}.{ver.Minor}.{ver.Build})###SnowcloakSyncMainUIDev";
+        WindowName = $"Hingashi Sync {dev} ({ver.Major}.{ver.Minor}.{ver.Build})###HingashiSyncMainUIDev";
         Toggle();
 #else
         var ver = Assembly.GetExecutingAssembly().GetName().Version!;
-        WindowName = "Snowcloak Sync " + ver.Major + "." + ver.Minor + "." + ver.Build + "###SnowcloakSyncMainUI";
+        WindowName = "Hingashi Sync " + ver.Major + "." + ver.Minor + "." + ver.Build + "###HingashiSyncMainUI";
 #endif
         Mediator.Subscribe<SwitchToMainUiMessage>(this, (_) => IsOpen = true);
         Mediator.Subscribe<SwitchToIntroUiMessage>(this, (_) => IsOpen = false);
@@ -104,7 +104,7 @@ public class CompactUi : WindowMediatorSubscriberBase
 
     protected override void DrawInternal()
     {
-        if (_serverManager.CurrentApiUrl.Equals(ApiController.SnowcloakServiceUri, StringComparison.Ordinal))
+        if (_serverManager.CurrentApiUrl.Equals(ApiController.HingashiServiceUri, StringComparison.Ordinal))
             UiSharedService.AccentColor = new Vector4(1.0f, 0.8666f, 0.06666f, 1.0f);
         else
             UiSharedService.AccentColor = ImGuiColors.ParsedGreen;
@@ -121,8 +121,8 @@ public class CompactUi : WindowMediatorSubscriberBase
                 ImGui.AlignTextToFramePadding();
                 ImGui.TextColored(ImGuiColors.DalamudRed, unsupported);
             }
-            UiSharedService.ColorTextWrapped($"Your Snowcloak installation is out of date, the current version is {ver.Major}.{ver.Minor}.{ver.Build}. " +
-                $"It is highly recommended to keep Snowcloak up to date. Open /xlplugins and update the plugin.", ImGuiColors.DalamudRed);
+            UiSharedService.ColorTextWrapped($"Your Hingashi installation is out of date, the current version is {ver.Major}.{ver.Minor}.{ver.Build}. " +
+                $"It is highly recommended to keep Hingashi up to date. Open /xlplugins and update the plugin.", ImGuiColors.DalamudRed);
         }
 
         using (ImRaii.PushId("header")) DrawUIDHeader();
@@ -525,7 +525,7 @@ public class CompactUi : WindowMediatorSubscriberBase
         {
             Mediator.Publish(new OpenSettingsUiMessage());
         }
-        UiSharedService.AttachToolTip("Open the Snowcloak Settings");
+        UiSharedService.AttachToolTip("Open the Hingashi Settings");
 
         ImGui.SameLine(); //Important to draw the uidText consistently
         ImGui.SetCursorPos(originalPos);

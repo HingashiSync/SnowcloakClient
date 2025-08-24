@@ -15,7 +15,7 @@ namespace MareSynchronos.Services;
 public sealed class CommandManagerService : IDisposable
 {
     private const string _commandName = "/sync";
-    private const string _commandName2 = "/snowcloak";
+    private const string _commandName2 = "/Hingashi";
 
     private const string _ssCommandPrefix = "/ss";
 
@@ -42,11 +42,11 @@ public sealed class CommandManagerService : IDisposable
         _mareConfigService = mareConfigService;
         _commandManager.AddHandler(_commandName, new CommandInfo(OnCommand)
         {
-            HelpMessage = "Opens the Snowcloak UI"
+            HelpMessage = "Opens the Hingashi UI"
         });
         _commandManager.AddHandler(_commandName2, new CommandInfo(OnCommand)
         {
-            HelpMessage = "Opens the Snowcloak UI"
+            HelpMessage = "Opens the Hingashi UI"
         });
 
         // Lazy registration of all possible /ss# commands which tbf is what the game does for linkshells anyway
@@ -86,7 +86,7 @@ public sealed class CommandManagerService : IDisposable
         {
             if (_apiController.ServerState == WebAPI.SignalR.Utils.ServerState.Disconnecting)
             {
-                _mediator.Publish(new NotificationMessage("Snowcloak disconnecting", "Cannot use /toggle while Snowcloak is still disconnecting",
+                _mediator.Publish(new NotificationMessage("Hingashi disconnecting", "Cannot use /toggle while Hingashi is still disconnecting",
                     NotificationType.Error));
             }
 

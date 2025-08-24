@@ -18,7 +18,7 @@ public sealed class RemoteConfigurationService
  //   };
 
     private readonly static string[] ConfigSources = [
-        "https://snowcloak-sync.com/config.json",
+        "https://sync.soulheart.de/config.json",
     ];
 
     private readonly ILogger<RemoteConfigurationService> _logger;
@@ -73,7 +73,7 @@ public sealed class RemoteConfigurationService
     {
         ulong ts = 1755859494;
 
-        var configString = "{\"mainServer\":{\"api_url\":\"wss://hub.snowcloak-sync.com/\",\"hub_url\":\"wss://hub.snowcloak-sync.com/mare\"},\"noSnap\":{\"listOfPlugins\":[\"Snapper\",\"Snappy\",\"Meddle.Plugin\"]}}";
+        var configString = "{\"mainServer\":{\"api_url\":\"wss://hub.soulheart.de/\",\"hub_url\":\"wss://hub.soulheart.de/mare\"},\"noSnap\":{\"listOfPlugins\":[\"Snapper\",\"Snappy\",\"Meddle.Plugin\"]}}";
 
 
         _configService.Current.Configuration = JsonNode.Parse(configString)!.AsObject();

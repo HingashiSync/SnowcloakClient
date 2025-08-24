@@ -104,7 +104,7 @@ public sealed class DtrEntry : IDisposable, IHostedService
     private IDtrBarEntry CreateEntry()
     {
         _logger.LogTrace("Creating new DtrBar entry");
-        var entry = _dtrBar.Get("Snowcloak");
+        var entry = _dtrBar.Get("Hingashi");
         entry.OnClick = _ => _mareMediator.Publish(new UiToggleMessage(typeof(CompactUi)));
 
         return entry;
@@ -163,19 +163,19 @@ public sealed class DtrEntry : IDisposable, IHostedService
                         .Select(x => string.Format("{0}", _configService.Current.PreferNoteInDtrTooltip ? x.GetNoteOrName() : x.PlayerName));
                 }
 
-                tooltip = $"Snowcloak: Connected{Environment.NewLine}----------{Environment.NewLine}{string.Join(Environment.NewLine, visiblePairs)}";
+                tooltip = $"Hingashi: Connected{Environment.NewLine}----------{Environment.NewLine}{string.Join(Environment.NewLine, visiblePairs)}";
                 colors = _configService.Current.DtrColorsPairsInRange;
             }
             else
             {
-                tooltip = "Snowcloak: Connected";
+                tooltip = "Hingashi: Connected";
                 colors = _configService.Current.DtrColorsDefault;
             }
         }
         else
         {
             text = RenderDtrStyle(_configService.Current.DtrStyle, "\uE04C");
-            tooltip = "Snowcloak: Not Connected";
+            tooltip = "Hingashi: Not Connected";
             colors = _configService.Current.DtrColorsNotConnected;
         }
 
